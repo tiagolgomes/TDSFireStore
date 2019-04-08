@@ -3,13 +3,21 @@ package com.example.opet.tds_firestore;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends Activity {
+
+    private EditText editLogin;
+    private EditText editSenha;
 
     private FirebaseAuth firebaseAuth;
 
@@ -17,6 +25,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        editLogin = findViewById(R.id.editLogin);
+        editSenha = findViewById(R.id.editSenha);
 
         firebaseAuth = FirebaseAuth.getInstance();
     }
@@ -33,27 +44,27 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void registrarProduto(View view){
-        callRegistrar();
+    public void signIn(View view) {
+        String login = editLogin.getText().toString();
+        String senha = editSenha.getText().toString();
+        firebaseAuth.signInWithEmailAndPassword(login, senha)
+            .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                @Override
+                public void onSuccess(AuthResult authResult) {
+                    Toast.makeText(MainActivity.this, "Logado com Sucesso!", Toast.LENGTH_SHORT).show();
+                    callMain();
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(MainActivity.this, "Erro ao Logar!", Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 
-    public void consultarProduto(View view){
-        callConsultar();
-    }
-
-    public void signOut(View view) {
-        firebaseAuth.signOut();
-        Intent telaPrincipal = new Intent(MainActivity.this, SignInActivity.class);
-        startActivity(telaPrincipal);
-    }
-
-    public void callRegistrar(){
-        Intent intent = new Intent(MainActivity.this, RegistrarProdutoActivity.class);
-        startActivity(intent);
-    }
-
-    public void callConsultar(){
-        Intent intent = new Intent(MainActivity.this, ConsultarProdutoActivity.class);
+    public void callMain(){
+        Intent intent = new Intent(MainActivity.this, DashActivity.class);
         startActivity(intent);
     }
 }
