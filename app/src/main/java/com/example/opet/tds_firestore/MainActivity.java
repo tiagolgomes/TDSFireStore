@@ -33,12 +33,12 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void registrarProduto(){
-
+    public void registrarProduto(View view){
+        callRegistrar();
     }
 
-    public void consultarProduto(){
-        
+    public void consultarProduto(View view){
+        callConsultar();
     }
 
     public void signOut(View view) {
