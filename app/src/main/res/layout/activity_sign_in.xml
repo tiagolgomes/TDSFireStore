@@ -5,24 +5,25 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.opet.tds_firestore.MainActivity">
+    tools:context="com.example.opet.tds_firestore.SignInActivity">
 
-    <Button
-        android:onClick="registrarProduto"
-        android:text="Registrar Produto"
+    <EditText
+        android:id="@+id/editLogin"
+        android:hint="Login"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
+    <EditText
+        android:id="@+id/editSenha"
+        android:hint="Senha"
+        android:inputType="textPassword"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"/>
 
     <Button
-        android:onClick="consultarProduto"
-        android:text="Consultar Produto"
+        android:onClick="signIn"
+        android:text="LOGAR"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"/>
-
-    <Button
-        android:onClick="signOut"
-        android:text="Sair"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>
