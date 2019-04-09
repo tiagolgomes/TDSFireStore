@@ -47,20 +47,25 @@ public class MainActivity extends Activity {
     public void signIn(View view) {
         String login = editLogin.getText().toString();
         String senha = editSenha.getText().toString();
-        firebaseAuth.signInWithEmailAndPassword(login, senha)
-            .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                @Override
-                public void onSuccess(AuthResult authResult) {
-                    Toast.makeText(MainActivity.this, "Logado com Sucesso!", Toast.LENGTH_SHORT).show();
-                    callMain();
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(MainActivity.this, "Erro ao Logar!", Toast.LENGTH_SHORT).show();
-                }
-            });
+        if(login.isEmpty() || senha.isEmpty()){
+            Toast.makeText(MainActivity.this, "Erro ao Logar!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            firebaseAuth.signInWithEmailAndPassword(login, senha)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        Toast.makeText(MainActivity.this, "Logado com Sucesso!", Toast.LENGTH_SHORT).show();
+                        callMain();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this, "Erro ao Logar!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        }
     }
 
     public void callMain(){

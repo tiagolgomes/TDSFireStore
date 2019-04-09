@@ -7,4 +7,35 @@
     android:layout_height="match_parent"
     tools:context="com.example.opet.tds_firestore.ConsultarProdutoActivity">
 
+    <TextView
+        android:text="Filtros:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:onClick="filtroQuantidade"
+        android:text="Voltar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:onClick="filtroPerecivel"
+        android:text="Voltar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:onClick="voltar"
+        android:text="Voltar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <Button
+        android:onClick="voltar"
+        android:text="Voltar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
